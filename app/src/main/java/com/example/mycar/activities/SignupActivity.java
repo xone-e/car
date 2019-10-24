@@ -30,7 +30,8 @@ public class SignupActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button signupButton;
-     String result;
+    private Button cancleButtuon;
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,8 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.cancel_signup).setOnClickListener(new View.OnClickListener() {
+        cancleButtuon = findViewById(R.id.cancel_signup);
+        cancleButtuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -86,24 +88,23 @@ public class SignupActivity extends AppCompatActivity {
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
-                Result resultServer = response.body();
-                result = resultServer.getResult();
-                Log.d("jani", "result:" + result);
+                Result r = response.body();
+                result = r.getResult();
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
                 Log.d("hasan", "result:" + t.fillInStackTrace());
-                Toast.makeText(SignupActivity.this, "hasan" + t.fillInStackTrace(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupActivity.this, "hasan" + t.fillInStackTrace(), Toast.LENGTH_LONG).show();
             }
         });
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        Log.d("sajad", "result:" + result);
-                        if (result.equals("inserted")) {
+                        if (result.equals("true")) {
                             startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                            //TODO Toast
                             dialog.dismiss();
                             finish();
                         } else {
