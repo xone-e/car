@@ -13,9 +13,9 @@ public class User {
     @SerializedName("lastName")
     @Expose
     private String lastName;
-    @SerializedName("carModel")
+    @SerializedName("machineName")
     @Expose
-    private String carModel;
+    private String machineName;
     @SerializedName("numberplate")
     @Expose
     private String numberplate;
@@ -25,14 +25,19 @@ public class User {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("imageUrl")
+    @Expose
+    private String imageUrl;
 
-    public User(String name, String lastName, String carModel, String numberplate, String userName, String password) {
+    public User(int id, String name, String lastName, String machineName, String numberplate, String userName, String password, String imageUrl) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
-        this.carModel = carModel;
+        this.machineName = machineName;
         this.numberplate = numberplate;
         this.userName = userName;
         this.password = password;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -59,12 +64,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public String getMachineName() {
+        return machineName;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public void setMachineName(String carModel) {
+        this.machineName = carModel;
     }
 
     public String getNumberplate() {
@@ -89,5 +94,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

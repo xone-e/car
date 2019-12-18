@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/border_button"
@@ -60,7 +60,7 @@
         app:layout_constraintGuide_percent="0.25" />
 
     <EditText
-        android:id="@+id/car_model_signup"
+        android:id="@+id/machine_name_signup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -70,7 +70,7 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/border_button"
         android:ems="10"
-        android:hint="مدل ماشین"
+        android:hint="نام ماشین"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/border_button"
@@ -93,7 +93,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/car_model_signup" />
+        app:layout_constraintTop_toBottomOf="@id/machine_name_signup" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/border_button"
@@ -138,6 +138,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/username_signup" />
+
+
+    <TextView
+        android:id="@+id/tx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guideline5"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline5"
