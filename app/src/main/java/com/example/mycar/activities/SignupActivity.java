@@ -28,10 +28,9 @@ public class SignupActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button signupButton;
-<<<<<<< HEAD
-=======
+
     private Button cancleButtuon;
->>>>>>> 409ebce3376f406edd8238ce1786127711068e05
+
     String result;
 
     @Override
@@ -53,11 +52,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-        Button cancleButtuon = findViewById(R.id.cancel_signup);
-=======
         cancleButtuon = findViewById(R.id.cancel_signup);
->>>>>>> 409ebce3376f406edd8238ce1786127711068e05
         cancleButtuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,31 +87,20 @@ public class SignupActivity extends AppCompatActivity {
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
-<<<<<<< HEAD
                 Result myResponse = response.body();
                 result = myResponse.getResult();
-=======
-                Result r = response.body();
-                result = r.getResult();
->>>>>>> 409ebce3376f406edd8238ce1786127711068e05
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-<<<<<<< HEAD
                 Toast.makeText(SignupActivity.this, "there is problem in server." +
                         "\n try again.", Toast.LENGTH_LONG).show();
-=======
-                Log.d("hasan", "result:" + t.fillInStackTrace());
-                Toast.makeText(SignupActivity.this, "hasan" + t.fillInStackTrace(), Toast.LENGTH_LONG).show();
->>>>>>> 409ebce3376f406edd8238ce1786127711068e05
             }
         });
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-<<<<<<< HEAD
                         switch (result) {
                             case "registered":
                                 Toast.makeText(SignupActivity.this, "ثبت نام با موفقیت انجام شد", Toast.LENGTH_SHORT).show();
@@ -133,16 +117,6 @@ public class SignupActivity extends AppCompatActivity {
                                 Toast.makeText(SignupActivity.this, "کاربر دیگری با این نام کاربری ثبت نام کرده است لطفا دوباره امتحان کنید.", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 break;
-=======
-                        if (result.equals("true")) {
-                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                            //TODO Toast
-                            dialog.dismiss();
-                            finish();
-                        } else {
-                            Toast.makeText(SignupActivity.this, "please enter correct username or password", Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
->>>>>>> 409ebce3376f406edd8238ce1786127711068e05
                         }
                     }
                 }, 1500);
