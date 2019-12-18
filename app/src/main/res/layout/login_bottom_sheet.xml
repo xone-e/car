@@ -53,8 +53,11 @@
         android:id="@+id/cancel_bottom_sheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
+=======
+>>>>>>> 409ebce3376f406edd8238ce1786127711068e05
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="1"

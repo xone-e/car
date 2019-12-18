@@ -108,6 +108,5 @@ public class UnfinishedTaskFragment extends Fragment {
             }
         });
 
-
     }
 }
