@@ -28,7 +28,6 @@ public class SignupActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button signupButton;
-
     private Button cancleButtuon;
 
     String result;

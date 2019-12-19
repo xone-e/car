@@ -1,8 +1,8 @@
 package com.example.mycar.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +12,8 @@ import com.example.mycar.JalaliCalendar;
 import com.example.mycar.R;
 import com.example.mycar.api.RetrofitClient;
 import com.example.mycar.pojo.Result;
+import com.example.mycar.pojo.Services;
+import com.example.mycar.receiver.MyBroadcastReceiver;
 import com.example.mycar.storage.SharedPrefrencesManager;
 
 import java.util.Calendar;
@@ -65,7 +67,7 @@ public class AddService extends AppCompatActivity implements View.OnClickListene
                 + "/" + (jalaliCalendar.get(Calendar.MONTH) + 1)
                 + "/" + jalaliCalendar.get(Calendar.DAY_OF_MONTH);
 
-        int userId = SharedPrefrencesManager.getInstance(AddService.this).getUserId();
+        final int userId = SharedPrefrencesManager.getInstance(AddService.this).getUserId();
 
         Call<Result> call = RetrofitClient.getInstance().getApi().addService(nameService, userId, serviceKilometer, estimateKilometer);
         call.enqueue(new Callback<Result>() {
@@ -75,6 +77,8 @@ public class AddService extends AppCompatActivity implements View.OnClickListene
                 result = myResponse.getResult();
                 switch (result) {
                     case "inserted":
+
+                        launchAlarm(userId);
                         Toast.makeText(AddService.this, "با موفقیت ثبت شد", Toast.LENGTH_SHORT).show();
                         finish();
                         break;
@@ -92,5 +96,26 @@ public class AddService extends AppCompatActivity implements View.OnClickListene
         });
 
 
+    }
+
+    private void launchAlarm(int userId) {
+        Call<Services> call2 = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getLastService(userId, 0);
+
+        call2.enqueue(new Callback<Services>() {
+            @Override
+            public void onResponse(Call<Services> call, Response<Services> response) {
+                Services result = response.body();
+                new MyBroadcastReceiver().setAlarm(AddService.this, result.getServices().get(0).getNotificationMilisecond());
+                Log.d("melaniya", result.getServices().get(0).getNotificationMilisecond() + " aybaa");
+            }
+
+            @Override
+            public void onFailure(Call<Services> call, Throwable t) {
+                System.out.println(t.fillInStackTrace());
+            }
+        });
     }
 }

@@ -23,6 +23,9 @@ public class Service {
     @SerializedName("notificationDate")
     @Expose
     private String notificationDate;
+    @SerializedName("notificationMilisecond")
+    @Expose
+    private long notificationMilisecond;
     @SerializedName("isDone")
     @Expose
     private boolean isDone;
@@ -76,6 +79,14 @@ public class Service {
 
     public void setNotificationDate(String notificationDate) {
         this.notificationDate = notificationDate;
+    }
+
+    public long getNotificationMilisecond() {
+        return notificationMilisecond;
+    }
+
+    public void setNotificationMilisecond(long notificationMilisecond) {
+        this.notificationMilisecond = notificationMilisecond;
     }
 
     public boolean getIsDone() {

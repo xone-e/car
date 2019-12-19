@@ -4,29 +4,27 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.mycar.R;
 import com.example.mycar.adapters.UnfinishedTaskAdapter;
 import com.example.mycar.api.RetrofitClient;
 import com.example.mycar.model.Service;
 import com.example.mycar.pojo.Services;
+import com.example.mycar.receiver.MyBroadcastReceiver;
 import com.example.mycar.storage.SharedPrefrencesManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,6 +83,13 @@ public class UnfinishedTaskFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        getAllServices();
+
+
+
+    }
+
+    private void getAllServices() {
         Call<Services> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -107,6 +112,5 @@ public class UnfinishedTaskFragment extends Fragment {
                 System.out.println(t.fillInStackTrace());
             }
         });
-
     }
 }

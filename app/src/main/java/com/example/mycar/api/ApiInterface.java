@@ -54,4 +54,10 @@ public interface ApiInterface {
             @Field("flag") int flag
     );
 
+    @FormUrlEncoded
+    @POST("getLastService.php")
+    Call<Services> getLastService(
+            @Field("userId") int userId,
+            @Field("flag") int flag
+    );
 }
