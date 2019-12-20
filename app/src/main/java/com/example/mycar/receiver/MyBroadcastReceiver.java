@@ -1,7 +1,6 @@
 package com.example.mycar.receiver;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,49 +13,28 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.mycar.Notification;
+import com.example.mycar.R;
+
 import static android.content.Context.ALARM_SERVICE;
 
 /**
  * Created by sajad on 7/9/2018.
  */
 public class MyBroadcastReceiver extends BroadcastReceiver {
-    private static final String CHANNEL_ID = "0";
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Alarm....", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "Alarm....", Toast.LENGTH_LONG).show();
 
-        /*createNotificationChannel(context);
+        Notification.createNotificationChannel(context);
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setContentTitle("ok")
-                .setContentText("ayvallll!!!!")
-                .setSmallIcon(R.drawable.baseline_event_24)
-                .setChannelId(CHANNEL_ID)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-                .build();
-        notificationManager.notify(0, notification);*/
+        Notification.createNotification(context);
     }
 
-    private void createNotificationChannel(Context context) {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = context.getString(R.string.channel_name); // The user-visible name of the channel.
-            String description = context.getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }*/
-    }
+
 
     public void setAlarm(AppCompatActivity activity, long milliseconds) {
         Intent intent = new Intent(activity, MyBroadcastReceiver.class);

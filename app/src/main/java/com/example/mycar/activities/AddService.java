@@ -1,5 +1,6 @@
 package com.example.mycar.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.example.mycar.JalaliCalendar;
 import com.example.mycar.R;
 import com.example.mycar.api.RetrofitClient;
+import com.example.mycar.model.Service;
 import com.example.mycar.pojo.Result;
 import com.example.mycar.pojo.Services;
 import com.example.mycar.receiver.MyBroadcastReceiver;
@@ -108,8 +110,14 @@ public class AddService extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onResponse(Call<Services> call, Response<Services> response) {
                 Services result = response.body();
+                Service service = result.getServices().get(0);
+
+                /*Intent intent = new Intent(AddService.this, MyBroadcastReceiver.class);
+                intent.putExtra("serviceName", service.getName());
+                intent.putExtra("notificationDate", service.getNotificationDate());
+                sendBroadcast(intent);*/
+
                 new MyBroadcastReceiver().setAlarm(AddService.this, result.getServices().get(0).getNotificationMilisecond());
-                Log.d("melaniya", result.getServices().get(0).getNotificationMilisecond() + " aybaa");
             }
 
             @Override
